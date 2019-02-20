@@ -46,10 +46,6 @@ public class JwtTokenFilter implements GlobalFilter, Ordered{
                 if ((boolean) result.get("access")) {
                     Claims claims = (Claims) result.get("data");
                     long expireTime = claims.getExpiration().getTime();
-                    String userId = claims.get("userId").toString();
-                    // IstIo 使用，需要在header中明文传输一个userId
-                    exchange.mutate().request(request.mutate().header("userId",userId).build()).build();
-
                     if (expireTime - new Date().getTime() > 5 * 60 * 1000) {
                         //token快要过期，（刷新token）重新生成一个新的token
                         String newToken  = jwtUtil.refreshToken(token);

@@ -47,3 +47,8 @@ spring:
         - Path=/order/**
         filters:
         - StripPrefix=1
+
+user-service:
+  path:
+    publicKey: http://user/publicKey
+    refreshToken: http://user/refreshToken
