@@ -47,6 +47,12 @@ spring:
         - Path=/order/**
         filters:
         - StripPrefix=1
+      - id: order
+        uri: http://bff
+        predicates:
+        - Path=/bff/**
+        filters:
+        - StripPrefix=1
 
 user-service:
   path:
