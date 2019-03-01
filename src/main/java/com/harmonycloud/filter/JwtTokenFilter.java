@@ -46,7 +46,7 @@ public class JwtTokenFilter implements GlobalFilter, Ordered{
                 if ((boolean) result.get("access")) {
                     Claims claims = (Claims) result.get("data");
                     long expireTime = claims.getExpiration().getTime();
-                    if (expireTime - new Date().getTime() > 5 * 60 * 1000) {
+                    if (expireTime - new Date().getTime() < 5 * 60 * 1000) {
                         //token快要过期，（刷新token）重新生成一个新的token
                         String newToken  = jwtUtil.refreshToken(token);
                         if(!StringUtils.isEmpty(newToken)){
