@@ -47,10 +47,16 @@ spring:
         - Path=/order/**
         filters:
         - StripPrefix=1
-      - id: order
+      - id: bff
         uri: http://bff
         predicates:
         - Path=/bff/**
+        filters:
+        - StripPrefix=1
+      - id: encounter
+        uri: http://encounter
+        predicates:
+        - Path=/encounter/**
         filters:
         - StripPrefix=1
 
