@@ -87,7 +87,7 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>gateway</finalName>
+        <finalName>ROOT</finalName>
     </build>
 
     <repositories>
