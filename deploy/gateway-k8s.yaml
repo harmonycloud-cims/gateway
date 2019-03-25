@@ -45,6 +45,7 @@ spec:
         - "-jar"
         - "/usr/src/app/app.jar"
         - "--spring.config.location=/tmp/config/"
+        - "--port=80"
       volumes:
       - configMap:
           items:

@@ -6,7 +6,7 @@ metadata:
 data:
   application.yml: |-
     server:
-      port: ${port:8090}
+      port: ${port:80}
     spring:
       cloud:
         gateway:
