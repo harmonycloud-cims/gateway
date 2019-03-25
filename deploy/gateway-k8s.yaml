@@ -1,0 +1,54 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: gateway
+    version: v1
+  name: gateway
+  namespace: dhcims-msapoc-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+        version: v1
+    spec:
+      containers:
+      - name: gateway
+        env:
+        - name: TZ
+          value: Asia/Shanghai
+        image: <image-name>
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 1500m
+            memory: 1536Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
+        volumeMounts:
+        - mountPath: /tmp/config/application.yml
+          name: gateway-config-volume
+          subPath: application.yml
+        command:
+        - java
+        args:
+        - "-Djava.security.egd=file:/dev/./urandom"
+        - "-jar"
+        - "/usr/src/app/app.jar"
+        - "--spring.config.location=/tmp/config/"
+      volumes:
+      - configMap:
+          items:
+          - key: application.yml
+            path: application.yml
+          name: gateway-config
+        name: gateway-config-volume

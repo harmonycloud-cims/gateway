@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gateway-config
+  namespace: dhcims-msapoc-dev
+data:
+  application.yml: |-
+    server:
+      port: ${port:8090}
+    spring:
+      cloud:
+        gateway:
+          routes:
+          - id: user
+            uri: http://user
+            predicates:
+            - Path=/user/**
+            filters:
+            - StripPrefix=1
+          - id: patient
+            uri: http://patient
+            predicates:
+            - Path=/patient/**
+            filters:
+            - StripPrefix=1
+          - id: appointment
+            uri: http://appointment
+            predicates:
+            - Path=/appointment/**
+            filters:
+            - StripPrefix=1
+          - id: clinicalnote
+            uri: http://clinicalnote
+            predicates:
+            - Path=/clinicalnote/**
+            filters:
+            - StripPrefix=1
+          - id: diagnosis
+            uri: http://diagnosis
+            predicates:
+            - Path=/diagnosis/**
+            filters:
+            - StripPrefix=1
+          - id: drug
+            uri: http://drug
+            predicates:
+            - Path=/drug/**
+            filters:
+            - StripPrefix=1
+          - id: order
+            uri: http://order
+            predicates:
+            - Path=/order/**
+            filters:
+            - StripPrefix=1
+          - id: bff
+            uri: http://bff
+            predicates:
+            - Path=/bff/**
+            filters:
+            - StripPrefix=1
+          - id: encounter
+            uri: http://encounter
+            predicates:
+            - Path=/encounter/**
+            filters:
+            - StripPrefix=1
+    user-service:
+      path:
+        publicKey: http://user/publicKey
+        refreshToken: http://user/refreshToken
