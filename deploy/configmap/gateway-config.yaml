@@ -6,66 +6,66 @@ metadata:
 data:
   application.yml: |-
     server:
-      port: ${port:80}
+      port: ${port:8090}
     spring:
       cloud:
         gateway:
           routes:
           - id: user
-            uri: http://user
+            uri: http://user:8080
             predicates:
             - Path=/user/**
             filters:
             - StripPrefix=1
           - id: patient
-            uri: http://patient
+            uri: http://patient:8080
             predicates:
             - Path=/patient/**
             filters:
             - StripPrefix=1
           - id: appointment
-            uri: http://appointment
+            uri: http://appointment:8080
             predicates:
             - Path=/appointment/**
             filters:
             - StripPrefix=1
           - id: clinicalnote
-            uri: http://clinicalnote
+            uri: http://clinicalnote:8080
             predicates:
             - Path=/clinicalnote/**
             filters:
             - StripPrefix=1
           - id: diagnosis
-            uri: http://diagnosis
+            uri: http://diagnosis:8080
             predicates:
             - Path=/diagnosis/**
             filters:
             - StripPrefix=1
           - id: drug
-            uri: http://drug
+            uri: http://drug:8080
             predicates:
             - Path=/drug/**
             filters:
             - StripPrefix=1
           - id: order
-            uri: http://order
+            uri: http://order:8080
             predicates:
             - Path=/order/**
             filters:
             - StripPrefix=1
           - id: bff
-            uri: http://bff
+            uri: http://bff:8080
             predicates:
             - Path=/bff/**
             filters:
             - StripPrefix=1
           - id: encounter
-            uri: http://encounter
+            uri: http://encounter:8080
             predicates:
             - Path=/encounter/**
             filters:
             - StripPrefix=1
     user-service:
       path:
-        publicKey: http://user/publicKey
-        refreshToken: http://user/refreshToken
+        publicKey: http://user:8080/publicKey
+        refreshToken: http://user:8080/refreshToken

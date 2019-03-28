@@ -22,10 +22,10 @@ spec:
         env:
         - name: TZ
           value: Asia/Shanghai
-        image: <image-name>
+        image: docker-registry.default.svc:5000/dhcims-msapoc-dev/gateway:19
         imagePullPolicy: Always
         ports:
-        - containerPort: 
+        - containerPort: 8080
           protocol: TCP
         resources:
           limits:
@@ -45,7 +45,7 @@ spec:
         - "-jar"
         - "/usr/src/app/app.jar"
         - "--spring.config.location=/tmp/config/"
-        - "--port=80"
+        - "--port=8080"
       volumes:
       - configMap:
           items:
